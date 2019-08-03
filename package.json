@@ -1,0 +1,29 @@
+{
+  "name": "@fizz6/strife-editor",
+  "version": "0.0.0",
+  "description": "Strife Engine Editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fizz6/strife-editor.git"
+  },
+  "author": "Michael Schroder <michael@schroder.space>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fizz6/strife-editor/issues"
+  },
+  "homepage": "https://github.com/fizz6/strife-editor#readme",
+  "devDependencies": {
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.3.4000"
+  },
+  "dependencies": {
+    "@fizz6/strife": "^1.0.1",
+    "@fizz6/strife-common": "^1.0.5",
+    "three": "^0.103.0"
+  }
+}
