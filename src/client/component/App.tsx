@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="component-app">
-        hi
+        Welcome to the wonderous world of <i>Strife</i>
       </div>
     );
   }
