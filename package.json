@@ -2,10 +2,12 @@
   "name": "@fizz6/strife-editor",
   "version": "0.0.0",
   "description": "Strife Engine Editor",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc --jsx react --esModuleInterop",
+    "start": "webpack -p && node dist/server.js",
+    "dev": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
@@ -18,12 +20,26 @@
   },
   "homepage": "https://github.com/fizz6/strife-editor#readme",
   "devDependencies": {
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
     "@fizz6/strife": "^1.0.1",
     "@fizz6/strife-common": "^1.0.5",
+    "@types/express": "^4.17.0",
+    "@types/react": "^16.8.24",
+    "@types/react-dom": "^16.8.5",
+    "express": "^4.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "three": "^0.103.0"
   }
 }
