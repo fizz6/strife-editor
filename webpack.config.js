@@ -36,7 +36,7 @@ module.exports = [{
     })
   ],
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [ '.ts', '.tsx', '.js' ]
   },
   output: {
     filename: 'bundle.js',
@@ -58,7 +58,7 @@ module.exports = [{
       ]
     },
     resolve: {
-      extensions: [ '.tsx', '.ts', '.js' ]
+      extensions: [ '.ts', '.tsx', '.js' ]
     },
     output: {
       filename: 'server.js',
