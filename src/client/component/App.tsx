@@ -1,6 +1,9 @@
 import React from "react";
 import { Dispatcher } from '@fizz6/strife-common';
-import { UpdateEvent } from '../events/UpdateEvent'
+import { Scene } from '@fizz6/strife-common';
+import { UpdateEvent } from '../events/UpdateEvent';
+import { RenderEvent } from '../events/RenderEvent';
+import { Player } from './Player';
 import "./App.css";
 
 export default class App extends React.Component {
@@ -10,23 +13,28 @@ export default class App extends React.Component {
 
   canvas: HTMLCanvasElement | null = null;
   ctx: CanvasRenderingContext2D | null = null;
-  dispatcher: Dispatcher = new Dispatcher();
+  scene: Scene = new Scene();
 
    mainLoop = () => {
     window.requestAnimationFrame(this.mainLoop);
 
-    this.dispatcher.emit(new UpdateEvent(.05));
+    this.scene.dispatcher.emit(new UpdateEvent(.05));
+    if (this.ctx && this.canvas) {
+        this.scene.dispatcher.emit(new RenderEvent(.05, this.canvas, this.ctx));
+    }
 
-    this.dispatcher.dispatch();
+    this.scene.dispatcher.dispatch();
   }
 
   componentDidMount = () => {
-      this.dispatcher.on(UpdateEvent)((event: UpdateEvent): void => {
+      this.scene.components.register(Player);
+      Player.Initialize(this.scene);
+      let playerEntity = this.scene.entities.add();
+      let player = playerEntity.components.add(Player);
+      this.scene.dispatcher.on(UpdateEvent)((event: UpdateEvent): void => {
           this.state.x += .1;
           if (this.ctx && this.canvas) {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = 'green';
-            this.ctx.fillRect(this.state.x, 10, 150, 100);
+            
           }
       });
       this.mainLoop();
