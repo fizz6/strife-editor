@@ -1,5 +1,6 @@
 import React from "react";
 import { Dispatcher } from '@fizz6/strife-common';
+import { UpdateEvent } from '../events/UpdateEvent'
 import "./App.css";
 
 export default class App extends React.Component {
@@ -14,16 +15,20 @@ export default class App extends React.Component {
    mainLoop = () => {
     window.requestAnimationFrame(this.mainLoop);
 
-    this.state.x += .1;
-    if (this.ctx && this.canvas) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = 'green';
-        this.ctx.fillRect(this.state.x, 10, 150, 100);
-    }
+    this.dispatcher.emit(new UpdateEvent(.05));
+
+    this.dispatcher.dispatch();
   }
 
   componentDidMount = () => {
-      console.log(this.dispatcher);
+      this.dispatcher.on(UpdateEvent)((event: UpdateEvent): void => {
+          this.state.x += .1;
+          if (this.ctx && this.canvas) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = 'green';
+            this.ctx.fillRect(this.state.x, 10, 150, 100);
+          }
+      });
       this.mainLoop();
   }
 
