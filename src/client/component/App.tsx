@@ -7,10 +7,6 @@ import { Player } from './Player';
 import "./App.css";
 
 export default class App extends React.Component {
-  state = {
-    x: 0
-  };
-
   canvas: HTMLCanvasElement | null = null;
   ctx: CanvasRenderingContext2D | null = null;
   scene: Scene = new Scene();
@@ -28,15 +24,9 @@ export default class App extends React.Component {
 
   componentDidMount = () => {
       this.scene.components.register(Player);
-      Player.Initialize(this.scene);
       let playerEntity = this.scene.entities.add();
       let player = playerEntity.components.add(Player);
-      this.scene.dispatcher.on(UpdateEvent)((event: UpdateEvent): void => {
-          this.state.x += .1;
-          if (this.ctx && this.canvas) {
-            
-          }
-      });
+
       this.mainLoop();
   }
 

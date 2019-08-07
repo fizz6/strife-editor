@@ -2,6 +2,8 @@ import { Event } from '@fizz6/strife-common';
 import { Entity } from '@fizz6/strife-common';
 
 export class RenderEvent extends Event {
+    static Priority: number = 1000;
+
     dt: Number;
     context: CanvasRenderingContext2D;
     canvas: HTMLCanvasElement;
